@@ -5,6 +5,12 @@ from aiohttp import ClientSession
 from scapy.all import sr1, srp, IP, TCP, Ether, ARP
 import logging
 import socket
+import uuid
+import subprocess
+from smbprotocol.connection import Connection
+from smbprotocol.session import Session
+from smbprotocol.tree import TreeConnect
+from smbprotocol.open import Open
 
 # Setup logging
 logging.basicConfig(filename='netrecon.log', level=logging.INFO, format='%(asctime)s - %(message)s')
@@ -41,23 +47,40 @@ async def network_discovery(ip_range):
 
 def nbt_scan(ip):
     print(f"Performing NBT scan on {ip}")
-    # Placeholder for NBT scan logic
+    try:
+        result = subprocess.run(['nmblookup', '-A', ip], capture_output=True, text=True)
+        print(result.stdout)
+    except Exception as e:
+        print(f"NBT scan failed: {e}")
 
 def smb_enum(ip):
     print(f"Performing SMB enumeration on {ip}")
-    # Placeholder for SMB enumeration logic
+    try:
+        connection = Connection(uuid.uuid4(), ip, 445)
+        connection.connect()
+        session = Session(connection, "guest", "")
+        session.connect()
+        tree = TreeConnect(session, f"\\\\{ip}\\IPC$")
+        tree.connect()
+        root_dir = Open(tree, "")
+        root_dir.create()
+        for share in root_dir.list_directories():
+            print(f"Found share: {share['file_name']}")
+        root_dir.close()
+        tree.disconnect()
+        session.disconnect()
+        connection.disconnect()
+    except Exception as e:
+        print(f"SMB enumeration failed: {e}")
 
 async def detect_service(ip, port):
-    # Placeholder for service detection logic
-    return f"Service on {ip}:{port}"
-
-def is_connected():
     try:
-        # Connect to a public DNS server to check for internet connectivity
-        socket.create_connection(("8.8.8.8", 53), timeout=2)
-        return True
-    except OSError:
-        return False
+        with socket.create_connection((ip, port), timeout=2) as sock:
+            sock.sendall(b"\n")
+            banner = sock.recv(1024).decode().strip()
+            return f"{port}/tcp open - {banner}"
+    except Exception:
+        return f"{port}/tcp open - Service detection failed"
 
 parser = argparse.ArgumentParser(description='NetRecon - Async Network Scanner Toolkit')
 parser.add_argument('--target', type=str, required=True, help='Target IP address to scan')
@@ -112,6 +135,14 @@ async def main():
         json.dump(results, f, indent=4)
     print("Results saved to scan_results.json")
     logging.info("Results saved to scan_results.json")
+
+def is_connected():
+    try:
+        # Connect to a public DNS server to check for internet connectivity
+        socket.create_connection(("8.8.8.8", 53), timeout=2)
+        return True
+    except OSError:
+        return False
 
 if __name__ == '__main__':
     asyncio.run(main())
