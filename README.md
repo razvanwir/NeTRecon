@@ -33,11 +33,8 @@ python netrecon.py --target <target_ip> [--ports <ports>]
 - **NBT Scan**: The `nbt_scan` function is a placeholder. Users can implement their own logic using tools like `nmblookup`.
 - **SMB Enumeration**: The `smb_enum` function is a placeholder. Users can extend this using `smbclient` or similar tools.
 
-## Testing
-To run tests, execute the following command:
-```bash
-pytest tests/
-```
+
+
 
 ## Contribution
 Contributions are welcome! Please open a pull request or submit an issue on GitHub.
