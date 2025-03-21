@@ -11,7 +11,7 @@ NetRecon is an asynchronous network scanning tool written in Python that allows 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/razvanwir/NetRecon.git
+   git clone https://github.com/razvanwir/NeTRecon.git
    cd NetRecon
    ```
 2. Install the required packages:
