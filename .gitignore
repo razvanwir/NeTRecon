@@ -130,6 +130,12 @@ celerybeat.pid
 # Environments
 .env
 .venv
+venv/
+env/
+
+# NetRecon specific
+scan_results.json
+netrecon.log
 env/
 venv/
 ENV/
