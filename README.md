@@ -70,11 +70,14 @@ python netrecon.py -t 192.168.1.1 --scan-type nbt
 
 | Flag | Description | Default |
 |------|-------------|---------|
-| `-t, --target` | Target IP or CIDR network | (required) |
-| `-p, --ports` | Comma-separated ports | `22,80,443` |
-| `--scan-type` | `port`, `network`, `nbt`, `smb` | `port` |
+| `-t, --target` | Target IP, domain, or CIDR | (required) |
+| `-p, --ports` | Ports (22,80,443 or top20/top100/top1000) | `top100` |
+| `--scan-type` | `port`, `network`, `nbt`, `smb`, `dns`, `auto` | `port` |
 | `-c, --concurrency` | Max concurrent connections | `100` |
 | `-o, --output` | Output JSON file | `scan_results.json` |
+| `--banner` | Grab banners from open ports | false |
+| `--ssl-info` | Get SSL certificate info | false |
+| `--wordlist` | Wordlist for DNS enum | built-in list |
 
 ## Output
 
@@ -82,12 +85,12 @@ Results are saved to `scan_results.json`:
 
 ```json
 {
-  "target": "192.168.1.1",
-  "scan_type": "port",
-  "timestamp": "2026-04-08T11:42:18.431446",
+  "target": "<TARGET>",
+  "scan_type": "<port|network|nbt|smb|dns|auto>",
+  "timestamp": "<TIMESTAMP>",
   "findings": [
-    {"port": 22, "status": "open", "service": "SSH"},
-    {"port": 443, "status": "open", "service": "HTTPS"}
+    {"port": <PORT>, "status": "open", "service": "<SERVICE>"},
+    {"port": <PORT>, "status": "open", "service": "<SERVICE>"}
   ]
 }
 ```
