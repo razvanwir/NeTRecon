@@ -1,8 +1,8 @@
 # NetRecon 🕵️
 
-> Asynchronous network scanning toolkit for penetration testers and CTF players.
+> Fast async network scanner for pentesters & bug bounty hunters.
 
-Fast, async port scanning with service detection, network discovery, and SMB/NBT enumeration.
+Async port scanning, service detection, network discovery, banner grabbing, SSL analysis, web tech detection, and automated enumeration.
 
 ![Python](https://img.shields.io/badge/python-3.12+-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -15,6 +15,11 @@ Fast, async port scanning with service detection, network discovery, and SMB/NBT
 - 📂 **SMB Enumeration** — List shares via `smbclient`
 - 📡 **NBT Scan** — NetBIOS-TS info via `nmblookup`
 - 💾 **JSON Output** — Results saved automatically
+- 🚀 **Auto Mode** — One-command scan + banner grab + SSL info + tech detection
+- 🎯 **Banner Grabbing** — Grab service banners automatically
+- 🔐 **SSL Info** — Get cert details, ciphers, expiration
+- 🕸️ **DNS Enum** — Subdomain brute-force with custom wordlist
+- 📦 **Port Presets** — `top20`, `top100`, `top1000` port lists
 
 ## Installation
 
