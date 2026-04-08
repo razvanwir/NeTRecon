@@ -41,34 +41,34 @@ pip install -r requirements.txt
 ### Port Scan (default)
 
 ```bash
-python netrecon.py -t 192.168.1.1 -p 22,80,443,3389
+python netrecon.py -t <TARGET> -p 22,80,443,3389
 ```
 
 Output:
 ```
-2026-04-08 11:42:18 - INFO - Scanning ports [22, 80, 443, 3389] on 192.168.1.1
-2026-04-08 11:42:18 - INFO -   Port 22: open (SSH)
-2026-04-08 11:42:18 - INFO -   Port 443: open (HTTPS)
-2026-04-08 11:42:18 - INFO - Scan complete. Found 2 open port(s).
-2026-04-08 11:42:18 - INFO - Results saved to scan_results.json
+<TIMESTAMP> - INFO - Scanning ports [22, 80, 443, 3389] on <TARGET>
+<TIMESTAMP> - INFO -   Port 22: open (SSH)
+<TIMESTAMP> - INFO -   Port 443: open (HTTPS)
+<TIMESTAMP> - INFO - Scan complete. Found 2 open port(s).
+<TIMESTAMP> - INFO - Results saved to scan_results.json
 ```
 
 ### Network Discovery
 
 ```bash
-python netrecon.py -t 192.168.1.0/24 --scan-type network
+python netrecon.py -t <CIDR> --scan-type network
 ```
 
 ### SMB Enumeration
 
 ```bash
-python netrecon.py -t 192.168.1.1 --scan-type smb
+python netrecon.py -t <TARGET> --scan-type smb
 ```
 
 ### NBT Scan
 
 ```bash
-python netrecon.py -t 192.168.1.1 --scan-type nbt
+python netrecon.py -t <TARGET> --scan-type nbt
 ```
 
 ## Options
