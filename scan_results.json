@@ -1,0 +1,12 @@
+{
+  "target": "127.0.0.1",
+  "scan_type": "port",
+  "timestamp": "2026-04-08T11:42:18.431446",
+  "findings": [
+    {
+      "port": 22,
+      "status": "open",
+      "service": "SSH"
+    }
+  ]
+}
