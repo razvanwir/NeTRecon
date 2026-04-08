@@ -183,7 +183,8 @@ def save_results(results: dict, output_file: str = "scan_results.json"):
 
 async def main():
     parser = argparse.ArgumentParser(
-        description='NetRecon - Async Network Scanner Toolkit'
+        prog='netrecon',
+        description='⚡ Fast async network scanner - port scanning, service detection, network discovery'
     )
     parser.add_argument(
         '--target', '-t',
