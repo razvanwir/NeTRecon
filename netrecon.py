@@ -21,13 +21,12 @@ from pathlib import Path
 import aiohttp
 from netaddr import IPNetwork
 
-# Setup logging
+# Setup logging - file only (no console output for privacy)
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('netrecon.log'),
-        logging.StreamHandler()
+        logging.FileHandler('netrecon.log')
     ]
 )
 logger = logging.getLogger(__name__)
