@@ -44,15 +44,6 @@ pip install -r requirements.txt
 python netrecon.py -t <TARGET> -p 22,80,443,3389
 ```
 
-Output:
-```
-<TIMESTAMP> - INFO - Scanning ports [22, 80, 443, 3389] on <TARGET>
-<TIMESTAMP> - INFO -   Port 22: open (SSH)
-<TIMESTAMP> - INFO -   Port 443: open (HTTPS)
-<TIMESTAMP> - INFO - Scan complete. Found 2 open port(s).
-<TIMESTAMP> - INFO - Results saved to scan_results.json
-```
-
 ### Network Discovery
 
 ```bash
